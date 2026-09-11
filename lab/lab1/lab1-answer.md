@@ -86,12 +86,12 @@ At this point in the lab, only the raw Food-11 dataset had been added under data
 
 The corresponding older version of my data.dvc file was:
 
-outs:
-- md5: a3a457d03c51ff8b037a833440f6ad13.dir
-  size: 1188442712
-  nfiles: 16643
-  hash: md5
-  path: data
+outs:  
+- md5: a3a457d03c51ff8b037a833440f6ad13.dir  
+- size: 1188442712  
+- nfiles: 16643  
+- hash: md5  
+- path: data
 
 This file stores metadata describing that version of the data directory.
 
@@ -115,10 +115,10 @@ Yes, the source code and project configuration are stored in Git.
 
 The repository includes files such as:
 
-lab/lab1/src/food11/data.py
-lab/lab1/pyproject.toml
-lab/lab1/uv.lock
-lab/lab1/data.dvc
+- lab/lab1/src/food11/data.py
+- lab/lab1/pyproject.toml
+- lab/lab1/uv.lock
+- lab/lab1/data.dvc
 
 The actual Food-11 image files are not stored directly in Git because the data directory is ignored by Git.
 
@@ -132,13 +132,13 @@ and is stored in the DagsHub DVC remote.
 
 Therefore:
 
-Git / GitHub
-├── source code
-├── configuration
-├── .gitignore
+Git / GitHub  
+├── source code  
+├── configuration  
+├── .gitignore  
 └── data.dvc
 
-DVC / DagsHub
+DVC / DagsHub  
 └── actual dataset files
 
 ---
@@ -162,14 +162,14 @@ DVC reads the current data.dvc file and downloads the corresponding data objects
 
 The workflow is:
 
-git clone
-    ↓
-downloads code + data.dvc
-    ↓
-dvc pull
-    ↓
-reads the data.dvc pointer
-    ↓
+git clone  
+↓  
+downloads code + data.dvc  
+↓  
+dvc pull  
+↓  
+reads the data.dvc pointer  
+↓  
 downloads the matching data from DagsHub
 
 So git pull updates Git-tracked files, while dvc pull retrieves the actual DVC-tracked dataset.
@@ -185,12 +185,12 @@ The older commit contains the earlier version of data.dvc, which represented the
 
 When I checked out the older Git commit and then ran:
 
-git checkout <old-commit-hash>
+git checkout <old-commit-hash>  
 dvc checkout
 
 only the older local data version was restored, so I could see food11_raw, while:
 
-food11_processed
+food11_processed  
 food11_processed_mini
 
 were no longer present locally.
@@ -204,11 +204,11 @@ The newer data is not deleted from DagsHub. It remains stored remotely.
 
 To return to the latest version, I used:
 
-git checkout main
+git checkout main  
 dvc checkout
 
 which restored the current dataset containing:
 
-food11_raw
-food11_processed
+food11_raw  
+food11_processed  
 food11_processed_mini
