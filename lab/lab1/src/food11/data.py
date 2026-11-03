@@ -87,7 +87,7 @@ def category_from_filename(filename: str) -> str:
 
     category_id = filename.split("_")[0]
 
-    return "Wrong"
+    return CATEGORIES.get(category_id)
 
 
 def resize_image(
